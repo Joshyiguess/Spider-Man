@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name = "venom")
@@ -11,9 +10,8 @@ public class venom extends OpMode {
     DcMotor bl;
     DcMotor fr;
     DcMotor br;
-    DcMotor leftHang;
-    DcMotor rightHang;
-    Servo claw;
+    DcMotor gearTrain;
+    Servo hook;
 
     @Override
     public void init() {
@@ -21,10 +19,9 @@ public class venom extends OpMode {
         bl = hardwareMap.dcMotor.get("bl");
         fr = hardwareMap.dcMotor.get("fr");
         br = hardwareMap.dcMotor.get("br");
-        leftHang = hardwareMap.dcMotor.get("leftHang");
-        rightHang = hardwareMap.dcMotor.get("rightHang");
+        gearTrain = hardwareMap.dcMotor.get("gearTrain");
 
-        claw = hardwareMap.servo.get("claw");
+        hook = hardwareMap.servo.get("hook");
 
 
 
@@ -86,23 +83,20 @@ public class venom extends OpMode {
 
         // Hang to go up and down
         if (gamepad2.dpad_down) {
-            leftHang.setPower(.9);
-            rightHang.setPower(.9);
+            gearTrain.setPower(.9);
 
         } else if (gamepad2.dpad_down) {
-            leftHang.setPower(-.9);
-            rightHang.setPower(-.9);
+            gearTrain.setPower(-.9);
 
         } else {
-            leftHang.setPower(0);
-            rightHang.setPower(0);
+            gearTrain.setPower(0);
         }
         //This is the claw have to tweak it
         if (gamepad2.dpad_right) {
-            claw.setPosition(1);
+            hook.setPosition(1);
 
         } else if (gamepad2.dpad_left) {
-            claw.setPosition(0.20);
+            hook.setPosition(0.20);
         }
     }
 }
